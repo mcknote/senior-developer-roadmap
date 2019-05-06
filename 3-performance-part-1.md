@@ -42,13 +42,13 @@ Two main things to do:
 
 ### Honey I shrunk the files
 
-Minimize text
+#### Minimize text
 
 * Remove spaces
 * Use shorter variable names
 * Use uglify functions to perform these actions automatically
 
-Minimize images
+#### Minimize images
 
 * Follow general advice
   * Choose simple illustrations over highly detailed photographs
