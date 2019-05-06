@@ -130,3 +130,31 @@ This will generate two files:
 * `id_rsa.pub`: public key; can share with anyone to encrypt the message
 * `id_rsa`: private key; NEVER EVER EVER share this
 
+And then copy the public content to the clipboard:
+
+```{bash}
+pbcopy < ~/ .ssh/id_rsa.pub
+```
+
+Finally, add this public key to our server:
+
+```{bash}
+ssh root@<ip_address>
+mkdir .ssh
+ls -a
+
+cd .ssh
+nano authorized_keys
+```
+
+### SSH into the server
+
+If there's multiple rsa keys, run the `ssh-add` command first to add your **private keys**.
+
+Once done we can just SSH into the server as the *intended identity*:
+
+```{bash}
+ssh root@<ip_address>
+```
+
+
