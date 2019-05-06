@@ -93,6 +93,15 @@ Encryption techniques:
 * HMX: Hash-based Message Authentication codes
   * Each message transmitted must contain Mac
   * Mac is a hash generated from symmetric key, the package sequence number, and the message content that was sent
-  * Since both have the information, each can verify the integrity of the message transmitted
+  * Since both have the information, each can generate the hash, match the hash, and verify the integrity of the message transmitted
 
+
+## Passwords Or SSH?
+
+Process so far:
+
+1. Diffie-Hellman Key Exchange
+2. Arrive at Symmetric Key
+3. Verify hashes
+4. Authenticate User
 
