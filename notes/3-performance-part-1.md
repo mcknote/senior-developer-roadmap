@@ -53,18 +53,21 @@ Two main things to do:
 * Follow general advice
   * Choose simple illustrations over highly detailed photographs
   * Resize the image based on its display size
+    * Use media queries; browsers won't download resources that don't fit the query
   * Use CDNs like imigx
   * Remove image metadata
 * Pick the right format for best performance
   * JPG
     * colorful
-    * use JPEG-optimizer
+    * use [JPEG-optimizer](http://www.jpeg-optimizer.com)
     * always lower image quality (30%-60%)
   * SVG
     * simple icon
   * PNG
     * transparency
-    * use TinyPNG
+    * use [TinyPNG](https://tinypng.com)
   * GIF
     * animations
+
+### Exercise #1 - Media Queries
 
