@@ -103,5 +103,10 @@ Process so far:
 1. Diffie-Hellman Key Exchange
 2. Arrive at Symmetric Key
 3. Verify hashes
-4. Authenticate User
+4. **Authenticate user**
+
+How to authenticate a user?
+
+* SSH into a server and still use passwords
+* Set up SSH for the server
 
