@@ -108,5 +108,25 @@ Process so far:
 How to authenticate a user?
 
 * SSH into a server and still use passwords
-* Set up SSH for the server
+* Set up SSH for the server and SSH as the user
+
+### Set up SSH
+
+First go to the SSH folder on your computer:
+
+```{bash}
+cd ~/.ssh
+ls
+```
+
+Then generate a key:
+
+```{bash}
+ssh-keygen -C "<email>"
+```
+
+This will generate two files:
+
+* `id_rsa.pub`: public key; can share with anyone to encrypt the message
+* `id_rsa`: private key; NEVER EVER EVER share this
 
