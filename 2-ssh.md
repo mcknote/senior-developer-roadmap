@@ -157,4 +157,22 @@ Once done we can just SSH into the server as the *intended identity*:
 ssh root@<ip_address>
 ```
 
+Bonus: If you delete the public keys from the server's `authorized_keys` file, permission will be denied.
 
+You may also add SSH keys through DO or Github's web interface, which is easier.
+
+### Additional Resources
+
+* Recommended `ssh-keygen` command: `ssh-keygen -t rsa -b 4096 -C "your_email@example.com"`
+* [How Secure Shell Works (SSH) - Computerphile](https://www.youtube.com/watch?v=ORcvSkgdA58&feature=youtu.be)
+
+## Exercise: Set Up SSH on Github
+
+1. Generate the SSH keys on your computer
+2. Copy the public key content
+3. Paste the public key content to Github, account setting, and SSH key section
+
+### Additional Commands
+
+* `ssh-add -D`: remove all identities
+* `ssh-add -l`: list all identities added
