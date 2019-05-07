@@ -144,6 +144,10 @@ Key phases in short:
 
 * [The location of the script tags](https://stackoverflow.com/questions/10808109/script-tag-async-defer)
 
+### Other
+
+* [Optional: Resource Prefetching](https://css-tricks.com/prefetching-preloading-prebrowsing/)
+
 ## Exercise
 
 ### #1 - Media Queries
@@ -163,3 +167,12 @@ Key phases in short:
 Performance testing sites:
 * [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
 * [WebPageTest](https://www.webpagetest.org)
+
+#### Obvious issues
+
+* Too many separate `css` and `js` files loaded in the `html` file
+* The `<script>` tag has been placed before `</head>`
+* The image sizes are generally too big
+* Too many reqeusts
+* Didn't use above-the-fold-loading technique
+* Using too much jQuery; *[You might not need jQuery](http://youmightnotneedjquery.com)*
