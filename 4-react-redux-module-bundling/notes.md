@@ -97,3 +97,29 @@ Context
 
 ## Create React App
 
+### Preparation
+
+#### Install `create-react-app`
+
+```{bash}
+sudo npm install -g create-react-app
+```
+
+#### Create an app
+
+```{bash}
+create-react-app robofriends
+```
+
+#### Start the app
+
+```{bash}
+cd robofriends/
+npm start
+```
+
+#### Files walkthrough
+
+* `package.json`
+  * `react-scripts`: includes all the neccesary packages (e.g. Webpack), at the latest version, you would need to build a react app; as the project gets bigger you may use `react-scripts eject` to customize the app
+* `package-lock.json`: makes sure the versions of the packages used are correct and the app runs successfully
