@@ -126,7 +126,7 @@ npm start
 * `.gitignore`: specifies files to ignore while pushing the changes
   * `/node_modules`: we already have `package.json` to install packages needed
 * `public/`
-  * `index.html`: has a `<div>`
+  * `index.html`: only has a `<div id='root'>` object in `<body>`
   * `manifest.json`: allows people to download a shortcut to your website
 * `src/`
   * `index.js`: has `ReactDOM.render(<App />, document.getElementById('root'))`, which finds the `id='root'` tag in the `index.html` file and renders `App`
