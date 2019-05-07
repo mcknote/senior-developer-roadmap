@@ -122,4 +122,12 @@ npm start
 
 * `package.json`
   * `react-scripts`: includes all the neccesary packages (e.g. Webpack), at the latest version, you would need to build a react app; as the project gets bigger you may use `react-scripts eject` to customize the app
-* `package-lock.json`: makes sure the versions of the packages used are correct and the app runs successfully
+* `package-lock.json`: makes sure the versions of the packages used are correct and the app runs successfully anywhere else
+* `.gitignore`: specifies files to ignore while pushing the changes
+  * `/node_modules`: we already have `package.json` to install packages needed
+* `public/`
+  * `index.html`: has a `<div>`
+  * `manifest.json`: allows people to download a shortcut to your website
+* `src/`
+  * `index.js`: has `ReactDOM.render(<App />, document.getElementById('root'))`, which finds the `id='root'` tag in the `index.html` file and renders `App`
+
