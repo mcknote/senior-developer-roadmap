@@ -142,7 +142,7 @@ Key phases in short:
 
 #### Resources: Async + Defer
 
-* [The location of the script tags]](https://stackoverflow.com/questions/10808109/script-tag-async-defer)
+* [The location of the script tags](https://stackoverflow.com/questions/10808109/script-tag-async-defer)
 
 ## Exercise
 
@@ -153,3 +153,13 @@ Key phases in short:
 * [Media Queries Cheat Sheet](http://www.bsidestudios.com/blog/media-queries-common-sizes-cheat-sheet)
 
 ### #2 - Network Optimizations
+
+### #3 - Critical Render Path
+
+### #4 - Keiko Corp Website
+
+**[Project repository](https://github.com/aneagoie/keiko-corp)**
+
+Performance testing sites:
+* [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
+* [WebPageTest](https://www.webpagetest.org)
