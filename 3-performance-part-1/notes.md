@@ -90,7 +90,7 @@ What browser does under the hood:
 9. Uses the render tree to figure out the layout
 10. Displays the webpage
 
-In short:
+Key phases in short:
 
 1. DOM
 2. CSSOM
@@ -107,7 +107,7 @@ In short:
 
 ### CSS
 
-* Render blocking; need to make it as lightweight as possible
+* *Render blocking*; need to make it as lightweight as possible
 * Only load whatever is needed
 * Incorporate above the fold loading
   * Only load what is being displayed
@@ -116,10 +116,33 @@ In short:
 
 ### JS
 
+* *Parser blocking*
 * Load scripts asynchronously
+  * Use `<script async>`
+  * Tell the browser to go ahead download scripts with another thread
+  * Execute once the script is downloaded
+  * The execution timing can be tricky and thus affect user experience (e.g. accessing a DOM element that is not loaded yet)
+  * Tip: Add them to anything that doesn't affect the DOM or CSSOM, i.e. pretty much all external scripts that require no knowledge on our code
 * Defer loading of scripts
+  * Use `<script defer>`
+  * Execute once the whole parsing is done
 * Minimize DOM manipulation
 * Avoid long running Javascript
+
+#### Choice of `<script>` tags
+
+* `<script>`
+  * Critical app scripts
+* `<script async>`
+  * Third-party scripts that don't affect the DOM
+  * If the core funcitonality requires javascript, **async** is the best
+* `<script defer>`
+  * Third-party scripts that don't affect the DOM and aren't important
+  * If the core functionality doesn't requrie javascript, **defer** can be used
+
+#### Resources: Async + Defer
+
+* [The location of the script tags]](https://stackoverflow.com/questions/10808109/script-tag-async-defer)
 
 ## Exercise
 
