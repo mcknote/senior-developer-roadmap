@@ -46,7 +46,7 @@ Two main things to do:
 
 * Remove spaces
 * Use shorter variable names
-* Use uglify functions to perform these actions automatically
+* Use uglify functions (e.g. `minify-js`) to perform these actions automatically
 
 #### Minimize images
 
@@ -69,5 +69,64 @@ Two main things to do:
   * GIF
     * animations
 
-### Exercise #1 - Media Queries
+### The traveling deliveryman
 
+* Limit the number of files we deliver
+* Bundling through tools like [webpack](https://webpack.js.org)
+* [Max Parallel Requests Per Browser](https://stackoverflow.com/questions/985431/max-parallel-http-connections-in-a-browser)
+
+## Critical Render Path Introduction
+
+What browser does under the hood:
+
+1. Requests HTML file
+2. Constructs document object model (DOM), which describes the web content
+3. Requests CSS file(s)
+4. Gets back to the DOM structure
+5. Constructs CSS object model (CSSOM)
+6. Requests JS file(s)
+7. Applied JS to both the DOM and the CSSOM and completes all the changes
+8. Combines the DOM and the CSSOM into a render tree
+9. Uses the render tree to figure out the layout
+10. Displays the webpage
+
+In short:
+
+1. DOM
+2. CSSOM
+3. Render Tree
+4. Layout
+5. Paint
+
+## Optimizing Critical Render Path
+
+### HTML
+
+* Load CSS as soon as possible (in the `<head>`) to create CSSOM
+* Load JS as late as possible (right before `<body>`), because it requires both CSS and HTML to be ready to get started; also to prevent stalling CSS elements
+
+### CSS
+
+* Render blocking; need to make it as lightweight as possible
+* Only load whatever is needed
+* Incorporate above the fold loading
+  * Only load what is being displayed
+* Add media attributes
+* Get less specificity
+
+### JS
+
+* Load scripts asynchronously
+* Defer loading of scripts
+* Minimize DOM manipulation
+* Avoid long running Javascript
+
+## Exercise
+
+### #1 - Media Queries
+
+* [VIEW AND REMOVE EXIF ONLINE](https://www.verexif.com/en/)
+* [Media Queries](https://css-tricks.com/snippets/css/media-queries-for-standard-devices/)
+* [Media Queries Cheat Sheet](http://www.bsidestudios.com/blog/media-queries-common-sizes-cheat-sheet)
+
+### #2 - Network Optimizations
