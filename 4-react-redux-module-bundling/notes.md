@@ -249,7 +249,7 @@ This basically means we want to use the `greeting` property from this `Hello.js`
 
 Let's start creating the **robofriends** app!
 
-#### Create cards
+#### Create `Card`
 
 Create the `src/Card.js` file:
 
@@ -311,12 +311,16 @@ ReactDoM.render(
             <Card id={robots[1].id} name={robots[1].name} email={robots[1].email}/>
             <Card id={robots[2].id} name={robots[2].name} email={robots[2].email}/>
         </div>
-    , document.getElementById('root'))
+    , document.getElementById('root'));
+
+registerServiceWorker();
 ```
 
 Note: the bracket around `robots` is to restructure it, which contains multiple objects.
 
-#### Restructing `props` in `Card.js`
+#### Improve `Card`
+
+Restructing `props` in `Card.js`:
 
 ```jsx
 import React from 'react';
@@ -337,7 +341,7 @@ const Card = () => {
 export default Card;
 ```
 
-#### Destructuring `props` in `Card.js`
+Destructuring `props` in `Card.js`:
 
 ```jsx
 import React from 'react';
@@ -358,3 +362,92 @@ export default Card;
 ```
 
 This is much cleaner than using `props.` separately.
+
+#### Create `CardList`
+
+Purpose: Instead of appending `Card` one by one in the `index.js` file, let's have a `CardList` component that helps us gather all the cards.
+
+Create the `src/CardList.js` file:
+
+```jsx
+import React from 'react';
+import Card from './Card';
+
+const CardList = ({ robots }) => {
+    return (
+        <div>
+            <Card id={robots[0].id} name={robots[0].name} email={robots[0].email}/>
+            <Card id={robots[1].id} name={robots[1].name} email={robots[1].email}/>
+            <Card id={robots[2].id} name={robots[2].name} email={robots[2].email}/>
+        </div>
+    )
+}
+
+export default CardList;
+```
+
+Modify the `src/index.js` file:
+
+```jsx
+...
+ReactDoM.render(
+        <CardList robots={robots}/>
+    , document.getElementById('root'));
+...
+```
+
+#### Improve `CardList`
+
+Instead of adding the `Card` objects one by one to our `CardList` object, we may use loops to populate them.
+
+In the `src/CardList.js` file:
+
+```jsx
+import React from 'react';
+import Card from './Card';
+
+const CardList = ({ robots }) => { //using map to loop through all the robots info and return a card object
+    const cardArray = robots.map((user, i) = > {
+        return (
+        <Card
+            key={i} //adding the key prop so react can keep track of the object changes more efficiently (instead of modifying the whole DOM)
+            id={robots[i].id}
+            name={robots[i].name}
+            email={robots[i].email}
+            />
+        )
+    })
+
+    return (
+        <div>
+            { cardArray } // display the whole array
+        </div>
+    )
+}
+```
+
+To make this even cleaner, we can just define the whole `cardArray` within `<div>`:
+
+```jsx
+import React from 'react';
+import Card from './Card';
+
+const CardList = ({ robots }) => {
+    return (
+        <div>
+            {
+                robots.map((user, i) = > {
+                    return (
+                    <Card
+                        key={i}
+                        id={robots[i].id}
+                        name={robots[i].name}
+                        email={robots[i].email}
+                        />
+                    )
+                })
+             } // display the whole array
+        </div>
+    )
+}
+```
