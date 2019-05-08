@@ -686,3 +686,11 @@ class App extends Component {
 
 export default App;
 ```
+
+So this is what happens among the components:
+
+1. `App` creates a `state` object that communicates to Virtual DOM and defines the `onSearchChange` function that modifies the `state` whenever there's an event.
+2. `SearchBox` would run `onSearchChange` whenever there's a change in the search box, which then keeps updating the `state`.
+3. In `render()` the app can then use the latest state to generate a list of robots as `filteredRobots`.
+4. Finally also within `render()`, `CardList` can use `filteredRobots` to generate `Card`. 
+
