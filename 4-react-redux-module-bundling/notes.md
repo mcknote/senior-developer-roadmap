@@ -446,7 +446,7 @@ const CardList = ({ robots }) => {
                         />
                     )
                 })
-             } // display the whole array
+             }
         </div>
     )
 }
