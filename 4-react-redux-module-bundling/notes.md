@@ -196,7 +196,7 @@ import 'tachyons'
 
 And then start using `tachyons` in `src/Hello.js`
 
-```js
+```jsx
 import React, { Component } from 'react';
 import './Hello.css';
 
