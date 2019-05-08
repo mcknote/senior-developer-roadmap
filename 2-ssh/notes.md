@@ -9,7 +9,7 @@ The use of SSH is to allow two computers to talk over the Internet.
 
 ## SSH Command
 
-```{bash}
+```sh
 ssh {user}@{host}
 ```
 
@@ -30,7 +30,7 @@ ssh {user}@{host}
 
 To clone a github repo:
 
-```{bash}
+```sh
 ssh root@<ip_address>
 sudo apt-get install git
 git clone git@github.com:<ssh_repo_info>
@@ -39,7 +39,7 @@ git clone git@github.com:<https_repo_info>
 
 To install npm:
 
-```{bash}
+```sh
 sudo apt-get install nodejs
 nodejs -v
 npm install <package>
@@ -47,7 +47,7 @@ npm install <package>
 
 Copy everything in a folder onto the server:
 
-```{bash}
+```sh
 cd <source_folder>
 rsync -av . root@<ip_address>:<destination_folder>
 ```
@@ -114,14 +114,14 @@ How to authenticate a user?
 
 First go to the SSH folder on your computer:
 
-```{bash}
+```sh
 cd ~/.ssh
 ls
 ```
 
 Then generate a key:
 
-```{bash}
+```sh
 ssh-keygen -C "<email>"
 ```
 
@@ -132,13 +132,13 @@ This will generate two files:
 
 And then copy the public content to the clipboard:
 
-```{bash}
+```sh
 pbcopy < ~/ .ssh/id_rsa.pub
 ```
 
 Finally, add this public key to our server:
 
-```{bash}
+```sh
 ssh root@<ip_address>
 mkdir .ssh
 ls -a
@@ -153,7 +153,7 @@ If there's multiple rsa keys, run the `ssh-add` command first to add your **priv
 
 Once done we can just SSH into the server as the *intended identity*:
 
-```{bash}
+```sh
 ssh root@<ip_address>
 ```
 

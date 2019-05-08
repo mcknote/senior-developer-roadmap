@@ -101,19 +101,19 @@ Context
 
 #### Install `create-react-app`
 
-```{bash}
+```sh
 sudo npm install -g create-react-app
 ```
 
 #### Create an app
 
-```{bash}
+```sh
 create-react-app robofriends
 ```
 
 #### Start the app
 
-```{bash}
+```sh
 cd robofriends/
 npm start
 ```
@@ -152,7 +152,7 @@ npm start
 
 #### Basic statement
 
-```{js}
+```js
 import React, { Component } from 'react';
 
 class Hello extends Component {
