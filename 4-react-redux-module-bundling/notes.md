@@ -131,3 +131,35 @@ npm start
 * `src/`
   * `index.js`: has `ReactDOM.render(<App />, document.getElementById('root'))`, which finds the `id='root'` tag in the `index.html` file and renders `App`
 
+### Creation
+
+* [Create React App 2.0: Babel 7, Sass, and More](https://reactjs.org/blog/2018/10/01/create-react-app-v2.html)
+
+#### Update React
+
+1. Change the `react-scripts` (and `react`) version in `package.json` to the latest version
+2. Run `npm install` to re-install packages based on `package.json`
+3. Run `npm start`
+
+#### Create the first component
+
+* `import`
+  * `react` is the core robot that does the rendering
+  * `react-dom` is the glue for the Web DOM; by contrast `react-native` can be used for mobile apps
+  * `react` supports seperate `css` files for each page, hence the `import './index.css';`
+* `ReactDOM`
+* `registerServiceWorker()`: for faster performance and offline availability
+
+#### Basic statement
+
+```{js}
+import React, { Component } from 'react';
+
+class Hello extends Component {
+    render(){
+        return <h1>Hello World</h1>
+    }
+}
+
+export default Hello;
+```
