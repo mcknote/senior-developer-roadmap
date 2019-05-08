@@ -451,3 +451,238 @@ const CardList = ({ robots }) => {
     )
 }
 ```
+
+#### Create `App`
+
+Create `src/App.js`:
+
+```jsx
+import React from 'react';
+import CardList from './CardList';
+import SearchBox from './SearchBox';
+import { robots } from './robots';
+
+const App = () => {
+    return (
+        <div className='tc'>
+            <h1>RoboFriends</h1>
+            <SearchBox />
+            <CardList robots={robots}/>
+        </div>
+    )
+}
+
+export default App;
+```
+
+Create `src/SearchBox.js`:
+
+```jsx
+import React from 'react';
+
+const SearchBox = () => {
+    return (
+        <div className='pa2'>
+            <input
+                className='pa3 ba b--green bg-lightest-blue'
+                type='search'
+                placeholder='search robots'
+            />
+        </div>
+    )
+}
+
+export default SearchBox;
+```
+
+#### Define the State
+
+**State**: An object that describes your app. **Props** are simply things that come out of state.
+
+So a parent feeds state into a child component and as soon as a child receives the state, it's a property that a child can never change.
+
+To use state we need to change the `const` way to the  `react` way. So for example in `src/App.js`:
+
+```jsx
+import React, { Component } from 'react';
+import CardList from './CardList';
+import SearchBox from './SearchBox';
+import { robots } from './robots';
+
+class App extends Component {
+
+    // define state
+    constructor() {
+        super()
+        this.state = {
+            robots: robots,
+            searchfield: ''
+        }
+    }
+
+    // access robots from state
+    render() {
+        return (
+            <div className='tc'>
+                <h1>RoboFriends</h1>
+                <SearchBox />
+                <CardList robots={this.state.robots}/>
+            </div>
+        )
+    };
+}
+
+export default App;
+```
+
+#### Pass the Props to `SearchBox`
+
+In `src/App.js`:
+
+```jsx
+import React, { Component } from 'react';
+import CardList from './CardList';
+import SearchBox from './SearchBox';
+import { robots } from './robots';
+
+class App extends Component {
+
+    // define state
+    constructor() {
+        super()
+        this.state = {
+            robots: robots,
+            searchfield: ''
+        }
+    }
+
+    // print any change in the searchbox
+    onSearchChange(event) {
+        console.log(event.target.value)
+    }
+
+    // access robots from state
+    // pass along the onSearchChange funciton to SearchBox
+    render() {
+        return (
+            <div className='tc'>
+                <h1>RoboFriends</h1>
+                <SearchBox searchChange={onSearchChange}/>
+                <CardList robots={this.state.robots}/>
+            </div>
+        )
+    };
+}
+
+export default App;
+```
+
+In `src/SearchBox.js`:
+
+```jsx
+import React from 'react';
+
+const SearchBox = ({ searchField, searchChange }) => {
+    return (
+        <div className='pa2'>
+            <input
+                className='pa3 ba b--green bg-lightest-blue'
+                type='search'
+                placeholder='search robots'
+                onChange={searchChange}
+            />
+        </div>
+    )
+}
+
+export default SearchBox;
+```
+
+#### Filter the Bots
+
+In `src/App.js`:
+
+```jsx
+import React, { Component } from 'react';
+import CardList from './CardList';
+import SearchBox from './SearchBox';
+import { robots } from './robots';
+
+class App extends Component {
+
+    // define state
+    constructor() {
+        super()
+        this.state = {
+            robots: robots,
+            searchField: ''
+        }
+    }
+
+    // filter the robots in state based on searchField
+    // use the object = (props) => syntax to prevent errors
+    onSearchChange = (event) => {
+        this.setState({ searchField: event.target.value})
+        const filteredRobots = this.state.robots.filter(robot => {
+            return robots.name.toLowerCase().includes(this.state.searchField.toLowerCase())
+        })
+        // console.log(event.target.value)
+    }
+
+    // access robots from state
+    // pass along the onSearchChange funciton to SearchBox
+    render() {
+        return (
+            <div className='tc'>
+                <h1>RoboFriends</h1>
+                <SearchBox searchChange={onSearchChange}/>
+                <CardList robots={this.state.robots}/>
+            </div>
+        )
+    };
+}
+
+export default App;
+```
+
+Finally, move the `filteredRobots` object inside `render()` so `CardList` has access to it:
+
+```jsx
+import React, { Component } from 'react';
+import CardList from './CardList';
+import SearchBox from './SearchBox';
+import { robots } from './robots';
+
+class App extends Component {
+
+    // define state
+    constructor() {
+        super()
+        this.state = {
+            robots: robots,
+            searchField: ''
+        }
+    }
+
+    onSearchChange = (event) => {
+        this.setState({ searchField: event.target.value})
+    }
+
+    // access robots from state
+    // pass along the onSearchChange funciton to SearchBox
+    render() {
+        const filteredRobots = this.state.robots.filter(robot => {
+            return robots.name.toLowerCase().includes(this.state.searchField.toLowerCase())
+        })
+        return (
+            <div className='tc'>
+                <h1>RoboFriends</h1>
+                <SearchBox searchChange={onSearchChange}/>
+                <CardList robots={filteredRobots}/>
+            </div>
+        )
+    };
+}
+
+export default App;
+```
