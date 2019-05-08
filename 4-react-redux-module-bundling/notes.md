@@ -154,7 +154,7 @@ npm start
 
 In the `App/Hello.js` file...
 
-```js
+```jsx
 import React, { Component } from 'react';
 import './Hello.css';
 
@@ -190,7 +190,7 @@ npm install tachyons
 
 Import `tachyons` in `src/index.js`
 
-```js
+```jsx
 import 'tachyons'
 ```
 
@@ -215,3 +215,146 @@ export default Hello;
 ```
 
 **Why we use `className` instead of `class`** is because this is actually follows the `jsx` syntax which limits our changes to the virtual DOM and allows `react` to perform minimum DOM manipulations.
+
+Also, since in this `js` file the `class` keyword is already reserved, it may cause confusion if we use `class` again in the `html` portion for other purposes. Here `className` helps separate the ohter usage.
+
+#### Use of Seggregation of Concerns
+
+In `react` each component consists of both content, the stylesheet and the action. Although this seems to violate SoC, in fact because component is regarded as basic functionality unit within `react`, this helps developers to focus on the compnent itself to make any changes.
+
+In the downstreams different atoms are still separate, so component actually acts as a nice interim level that already intergrates the trinity.
+
+#### Adding `props`
+
+If we add the `props` (properties) in the `src/index.js` file as follows:
+
+```jsx
+...
+ReactDoM.render(<Hello greeting={'Hello' + 'React Ninja'}>, document.getElementById('root'))
+...
+```
+
+We may use this `prop` in our `src/Hello.js` file:
+
+```jsx
+...
+<h1>Hello world</h1>
+<p>{this.props.greeting}</p>
+...
+```
+
+This basically means we want to use the `greeting` property from this `Hello.js` file, which is defined from the `index.js` file upon execution.
+
+### Building the App
+
+Let's start creating the **robofriends** app!
+
+#### Create cards
+
+Create the `src/Card.js` file:
+
+```jsx
+import React from 'react';
+
+const Card = () => {
+    return (
+        <div className='bg-light-green br3 pa3 ma2 grow bw2 shadow-5'>
+            <img alt='robots' src={`https://robohash.org/${props.id}$200x200`} />
+            <div>
+                <h2>{props.name}</h2>
+                <p>{props.email}</p>
+            </div>
+        </div>
+    );
+}
+
+export default Card;
+```
+
+In which the `{props.id}`, `{props.name}` and `{props.email}` will take values from `index.js`.
+
+Create the `robots.js` file:
+
+```jsx
+
+export const robots = [
+    {
+        id: 1,
+        name: 'Leanne Graham',
+        username: 'Bret',
+        email: 'Sincere@april.biz'
+    },
+    {
+        id: 2,
+        name: 'Ervin Howell',
+        username: 'Antonette',
+        email: 'Shanna@melissa.tv'
+    }
+    ...
+] 
+```
+
+Finally, modify the `src/index.js` file to display the cards:
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import Card from './Card';
+import registerServiceWorker from './registerServiceWorker';
+import 'tachyons';
+import { robots } from './robots'
+
+ReactDoM.render(
+        <div>
+            <Card id={robots[0].id} name={robots[0].name} email={robots[0].email}/>
+            <Card id={robots[1].id} name={robots[1].name} email={robots[1].email}/>
+            <Card id={robots[2].id} name={robots[2].name} email={robots[2].email}/>
+        </div>
+    , document.getElementById('root'))
+```
+
+Note: the bracket around `robots` is to restructure it, which contains multiple objects.
+
+#### Restructing `props` in `Card.js`
+
+```jsx
+import React from 'react';
+
+const Card = () => {
+    const { name, email, id } = props; //restructuring
+    return (
+        <div className='bg-light-green br3 pa3 ma2 grow bw2 shadow-5'>
+            <img alt='robots' src={`https://robohash.org/${id}$200x200`} />
+            <div>
+                <h2>{name}</h2>
+                <p>{email}</p>
+            </div>
+        </div>
+    );
+}
+
+export default Card;
+```
+
+#### Destructuring `props` in `Card.js`
+
+```jsx
+import React from 'react';
+
+const Card = ({ name, email, id }) => { //destructuring
+    return (
+        <div className='bg-light-green br3 pa3 ma2 grow bw2 shadow-5'>
+            <img alt='robots' src={`https://robohash.org/${id}$200x200`} />
+            <div>
+                <h2>{name}</h2>
+                <p>{email}</p>
+            </div>
+        </div>
+    );
+}
+
+export default Card;
+```
+
+This is much cleaner than using `props.` separately.
