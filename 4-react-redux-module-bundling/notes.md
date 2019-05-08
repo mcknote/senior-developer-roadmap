@@ -152,14 +152,66 @@ npm start
 
 #### Basic statement
 
+In the `App/Hello.js` file...
+
 ```js
 import React, { Component } from 'react';
+import './Hello.css';
 
 class Hello extends Component {
     render(){
-        return <h1>Hello World</h1>
+        return (
+            <div>
+                <h1>Hello World</h1>
+                <p>Welcome to React</p>
+            </div>
+        );
     }
 }
 
 export default Hello;
 ```
+
+In the `src/Hello.css` file...
+
+```css
+h1 {
+    background: red;
+}
+```
+
+#### Use `tachyons` to boost development
+
+Install `tachyons`
+
+```sh
+npm install tachyons
+```
+
+Import `tachyons` in `src/index.js`
+
+```js
+import 'tachyons'
+```
+
+And then start using `tachyons` in `src/Hello.js`
+
+```js
+import React, { Component } from 'react';
+import './Hello.css';
+
+class Hello extends Component {
+    render(){
+        return (
+            <div className='f1 tc'>
+                <h1>Hello World</h1>
+                <p>Welcome to React</p>
+            </div>
+        );
+    }
+}
+
+export default Hello;
+```
+
+**Why we use `className` instead of `class`** is because this is actually follows the `jsx` syntax which limits our changes to the virtual DOM and allows `react` to perform minimum DOM manipulations.
